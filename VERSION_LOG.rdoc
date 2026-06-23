@@ -1,5 +1,17 @@
 = V-Shape 100 Body Route Version Log
 
+== v1.7 - 24 Jun 2026
+
+* Updated Monday to Friday lunches to match the real routine: one pulled chicken can day, one tuna can day, two economy rice days, and one family lunch outside.
+* Added an economy rice cutting guide for choosing lean protein, half rice, and vegetables.
+* Changed Nutrition pill styling to darker high-contrast backgrounds with white text.
+
+== v1.6 - 24 Jun 2026
+
+* Split Daily Meals guidance into separate English and Chinese lines.
+* Removed sweet potato from the AEON grocery picks and weekly meal plan.
+* Updated the fixed 100-day meal base note to allow Korean, Japanese, or Thai flavor rotation.
+
 == v1.5 - 23 Jun 2026
 
 * Reworded the Korean flavor note in the fixed 100-day meal base.
