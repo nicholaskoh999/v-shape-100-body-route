@@ -1,0 +1,1229 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#080c12">
+  <meta name="description" content="V-Shape 100 - 100-Day Training & Routine Plan">
+  <title>V-Shape 100 - Training & Routine Plan</title>
+  <link rel="manifest" href="./manifest.webmanifest">
+  <link rel="icon" href="./icons/favicon.png" type="image/png">
+  <link rel="apple-touch-icon" href="./icons/icon-192.png">
+  <style>
+    :root {
+      color-scheme: dark;
+      --bg: #080c12;
+      --panel: #111823;
+      --panel-soft: #151e2b;
+      --line: #263244;
+      --text: #edf5ff;
+      --muted: #9caec2;
+      --green: #30d980;
+      --blue: #8fd3ff;
+      --purple: #b98cff;
+      --cyan: #20d5f2;
+      --yellow: #ffd85a;
+      --red: #ff7575;
+      --radius: 18px;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      background:
+        radial-gradient(circle at 50% -10%, rgba(32, 213, 242, 0.18), transparent 34rem),
+        linear-gradient(180deg, #080c12 0%, #0b1018 45%, #070a0f 100%);
+      color: var(--text);
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      line-height: 1.5;
+    }
+
+    a {
+      color: inherit;
+    }
+
+    .app {
+      width: min(100%, 480px);
+      margin: 0 auto;
+      padding: 18px 14px 34px;
+    }
+
+    .hero {
+      padding: 26px 4px 18px;
+    }
+
+    .eyebrow {
+      margin: 0 0 8px;
+      color: var(--cyan);
+      font-size: 0.78rem;
+      font-weight: 800;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    h1 {
+      margin: 0;
+      max-width: 11ch;
+      font-size: clamp(2.45rem, 15vw, 4.4rem);
+      line-height: 0.92;
+      letter-spacing: 0;
+    }
+
+    .hero p {
+      margin: 14px 0 0;
+      max-width: 31rem;
+      color: var(--muted);
+      font-size: 0.98rem;
+    }
+
+    .app-version {
+      display: inline-flex;
+      width: fit-content;
+      margin-top: 12px;
+      border: 1px solid rgba(32, 213, 242, 0.26);
+      border-radius: 999px;
+      padding: 6px 10px;
+      background: rgba(32, 213, 242, 0.08);
+      color: #baf7ff;
+      font-size: 0.76rem;
+      font-weight: 850;
+    }
+
+    footer .app-version {
+      margin: 8px auto 0;
+    }
+
+    .progress-card,
+    .section-card,
+    .route-card,
+    details.day,
+    .rule-card,
+    .schedule-card {
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      background: linear-gradient(180deg, rgba(21, 30, 43, 0.96), rgba(12, 17, 25, 0.96));
+      border-radius: var(--radius);
+      box-shadow: 0 18px 40px rgba(0, 0, 0, 0.28);
+    }
+
+    .progress-card {
+      overflow: hidden;
+      margin-bottom: 16px;
+      padding: 16px;
+      border-left: 4px solid var(--cyan);
+    }
+
+    .progress-top {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 14px;
+    }
+
+    .label {
+      color: var(--muted);
+      font-size: 0.76rem;
+      font-weight: 800;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .day-count {
+      margin-top: 2px;
+      font-size: 2.2rem;
+      font-weight: 900;
+      line-height: 1;
+    }
+
+    .percent {
+      min-width: 66px;
+      border-radius: 999px;
+      border: 1px solid rgba(32, 213, 242, 0.34);
+      background: rgba(32, 213, 242, 0.12);
+      padding: 8px 10px;
+      color: #d8fbff;
+      text-align: center;
+      font-size: 0.9rem;
+      font-weight: 900;
+    }
+
+    .bar {
+      height: 9px;
+      margin: 15px 0 12px;
+      overflow: hidden;
+      border-radius: 999px;
+      background: #263244;
+    }
+
+    .bar span {
+      display: block;
+      width: 0;
+      height: 100%;
+      border-radius: inherit;
+      background: linear-gradient(90deg, var(--green), var(--cyan));
+    }
+
+    .motivation {
+      margin: 0;
+      color: #d8e8f7;
+      font-weight: 650;
+    }
+
+    .nav {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      display: flex;
+      gap: 8px;
+      margin: 0 -14px 18px;
+      padding: 10px 14px;
+      overflow-x: auto;
+      background: rgba(8, 12, 18, 0.86);
+      border-block: 1px solid rgba(255, 255, 255, 0.08);
+      backdrop-filter: blur(16px);
+      scrollbar-width: none;
+    }
+
+    .nav::-webkit-scrollbar {
+      display: none;
+    }
+
+    .nav a {
+      flex: 0 0 auto;
+      min-height: 36px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border: 1px solid rgba(255, 255, 255, 0.09);
+      border-radius: 999px;
+      padding: 8px 12px;
+      background: rgba(255, 255, 255, 0.05);
+      color: #d9e9f8;
+      text-decoration: none;
+      font-size: 0.84rem;
+      font-weight: 800;
+      white-space: nowrap;
+    }
+
+    section {
+      scroll-margin-top: 72px;
+      margin-top: 20px;
+    }
+
+    .section-title {
+      margin: 0 0 10px;
+      padding: 0 2px;
+      font-size: 1.28rem;
+      letter-spacing: 0;
+    }
+
+    .week-grid {
+      display: grid;
+      gap: 10px;
+    }
+
+    .schedule-card {
+      display: grid;
+      grid-template-columns: 52px 1fr;
+      gap: 12px;
+      padding: 13px;
+      border-left: 4px solid var(--cyan);
+    }
+
+    .schedule-card strong {
+      display: block;
+      font-size: 0.96rem;
+    }
+
+    .schedule-card span {
+      display: block;
+      color: var(--muted);
+      font-size: 0.87rem;
+    }
+
+    .dow {
+      width: 42px;
+      height: 42px;
+      display: grid;
+      place-items: center;
+      border-radius: 14px;
+      background: rgba(255, 255, 255, 0.06);
+      color: #ffffff;
+      font-size: 0.78rem;
+      font-weight: 900;
+    }
+
+    .route-card {
+      padding: 14px;
+      border-left: 4px solid var(--cyan);
+    }
+
+    .route-card + .route-card {
+      margin-top: 10px;
+    }
+
+    .route-note {
+      margin: 0 0 12px;
+      color: var(--muted);
+      font-size: 0.9rem;
+    }
+
+    .timeline {
+      display: grid;
+      gap: 9px;
+    }
+
+    .timeline-item {
+      display: grid;
+      grid-template-columns: 86px minmax(0, 1fr);
+      gap: 11px;
+      align-items: start;
+      padding: 11px;
+      border-radius: 14px;
+      border: 1px solid rgba(255, 255, 255, 0.07);
+      background: rgba(255, 255, 255, 0.045);
+    }
+
+    .timeline-time {
+      color: #baf7ff;
+      font-size: 0.78rem;
+      font-weight: 900;
+      line-height: 1.25;
+    }
+
+    .timeline-main strong {
+      display: block;
+      font-size: 0.94rem;
+      line-height: 1.25;
+    }
+
+    .timeline-main span,
+    .timeline-main small {
+      display: block;
+      color: var(--muted);
+      font-size: 0.82rem;
+    }
+
+    .training-days {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-top: 8px;
+    }
+
+    .training-days .tag {
+      background: #f8fbff;
+      color: #071018;
+    }
+
+    details.day {
+      margin-bottom: 12px;
+      overflow: hidden;
+      border-left: 4px solid var(--cyan);
+    }
+
+    details.day[open] summary {
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    summary {
+      min-height: 70px;
+      display: grid;
+      grid-template-columns: 1fr auto;
+      align-items: center;
+      gap: 12px;
+      padding: 14px 16px;
+      cursor: pointer;
+      list-style: none;
+    }
+
+    summary::-webkit-details-marker {
+      display: none;
+    }
+
+    summary h3 {
+      margin: 0;
+      font-size: 1.05rem;
+      letter-spacing: 0;
+    }
+
+    summary p {
+      margin: 3px 0 0;
+      color: var(--muted);
+      font-size: 0.86rem;
+    }
+
+    .chev {
+      width: 32px;
+      height: 32px;
+      display: grid;
+      place-items: center;
+      border-radius: 50%;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      color: var(--cyan);
+      transition: transform 180ms ease;
+    }
+
+    details[open] .chev {
+      transform: rotate(180deg);
+    }
+
+    .day-body {
+      padding: 14px;
+    }
+
+    .category {
+      margin: 4px 0 14px;
+    }
+
+    .category h4 {
+      margin: 0 0 8px;
+      color: #f7fbff;
+      font-size: 0.9rem;
+      font-weight: 900;
+      letter-spacing: 0;
+    }
+
+    .exercise {
+      display: grid;
+      grid-template-columns: 34px minmax(0, 1fr);
+      gap: 10px;
+      margin-bottom: 9px;
+      padding: 12px;
+      border-radius: 15px;
+      background: rgba(255, 255, 255, 0.045);
+      border: 1px solid rgba(255, 255, 255, 0.07);
+    }
+
+    .num {
+      width: 30px;
+      height: 30px;
+      display: grid;
+      place-items: center;
+      border-radius: 11px;
+      background: rgba(255, 255, 255, 0.07);
+      color: #d9e9f8;
+      font-size: 0.8rem;
+      font-weight: 900;
+    }
+
+    .exercise-main {
+      min-width: 0;
+    }
+
+    .exercise-head {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 8px;
+      min-width: 0;
+    }
+
+    .exercise h5 {
+      margin: 0;
+      min-width: 0;
+      font-size: 0.96rem;
+      line-height: 1.25;
+      letter-spacing: 0;
+    }
+
+    .tag {
+      flex: 0 0 auto;
+      border-radius: 999px;
+      padding: 4px 8px;
+      color: #071018;
+      font-size: 0.68rem;
+      font-weight: 1000;
+      line-height: 1;
+    }
+
+    .tag.db { background: var(--green); }
+    .tag.es { background: var(--blue); }
+    .tag.core { background: var(--purple); }
+    .tag.swim { background: var(--cyan); }
+    .tag.warm { background: var(--yellow); }
+
+    .meta {
+      margin: 5px 0 0;
+      color: #c7d5e4;
+      font-size: 0.84rem;
+      font-weight: 750;
+    }
+
+    .desc {
+      margin: 4px 0 0;
+      color: var(--muted);
+      font-size: 0.82rem;
+    }
+
+    .form-btn {
+      width: fit-content;
+      max-width: 100%;
+      min-height: 38px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      margin-top: 10px;
+      border: 1px solid rgba(32, 213, 242, 0.46);
+      border-radius: 999px;
+      padding: 8px 12px;
+      background: rgba(32, 213, 242, 0.11);
+      color: #bbf9ff;
+      text-decoration: none;
+      font-size: 0.82rem;
+      font-weight: 900;
+      white-space: nowrap;
+    }
+
+    .gif-drop {
+      margin-top: 10px;
+      border-radius: 14px;
+      border: 1px solid rgba(32, 213, 242, 0.22);
+      background: rgba(32, 213, 242, 0.055);
+      overflow: hidden;
+    }
+
+    .gif-drop summary {
+      min-height: 40px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      padding: 9px 11px;
+      color: #bbf9ff;
+      font-size: 0.82rem;
+      font-weight: 900;
+    }
+
+    .gif-drop summary::after {
+      content: "⌄";
+      color: var(--cyan);
+      font-size: 1rem;
+      transition: transform 180ms ease;
+    }
+
+    .gif-drop[open] summary::after {
+      transform: rotate(180deg);
+    }
+
+    .gif-box {
+      padding: 0 10px 11px;
+    }
+
+    .gif-box img {
+      width: 100%;
+      max-height: 280px;
+      object-fit: contain;
+      display: block;
+      border-radius: 12px;
+      background: #05080d;
+    }
+
+    .gif-fallback {
+      display: none;
+      margin: 0;
+      padding: 10px;
+      border-radius: 12px;
+      background: rgba(255, 255, 255, 0.055);
+      color: var(--muted);
+      font-size: 0.82rem;
+    }
+
+    .section-card,
+    .rule-card {
+      padding: 15px;
+    }
+
+    .section-card p,
+    .rule-card p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 0.9rem;
+    }
+
+    .rule-list {
+      display: grid;
+      gap: 10px;
+      margin-top: 10px;
+    }
+
+    .rule-card {
+      border-left: 4px solid var(--green);
+    }
+
+    .rule-card strong {
+      display: block;
+      margin-bottom: 3px;
+      font-size: 0.94rem;
+    }
+
+    .quick-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 12px;
+    }
+
+    .plan-points {
+      display: grid;
+      gap: 10px;
+      margin-top: 12px;
+    }
+
+    .plan-points p {
+      padding-top: 10px;
+      border-top: 1px solid rgba(255, 255, 255, 0.07);
+    }
+
+    .plan-points strong,
+    .plan-points span {
+      display: block;
+    }
+
+    .plan-points strong {
+      color: #edf5ff;
+      font-size: 0.9rem;
+    }
+
+    .plan-points span {
+      margin-top: 2px;
+      color: var(--muted);
+      font-size: 0.86rem;
+    }
+
+    footer {
+      margin-top: 26px;
+      color: #6f8193;
+      font-size: 0.78rem;
+      text-align: center;
+    }
+
+    @media (max-width: 360px) {
+      .app {
+        padding-inline: 11px;
+      }
+
+      .nav {
+        margin-inline: -11px;
+        padding-inline: 11px;
+      }
+
+      .exercise {
+        grid-template-columns: 30px minmax(0, 1fr);
+        padding: 10px;
+      }
+
+      .exercise-head {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .timeline-item {
+        grid-template-columns: 76px minmax(0, 1fr);
+        padding: 10px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main class="app">
+    <header class="hero">
+      <p class="eyebrow">Mobile workout plan</p>
+      <h1>V-Shape 100</h1>
+      <p>100-Day Training & Routine Plan for shoulder width, V-shape back, chest shape, abs foundation, fat loss, and better clothes fit.</p>
+    </header>
+
+    <section id="progress" class="progress-card" aria-labelledby="progress-title">
+      <div class="progress-top">
+        <div>
+          <div class="label" id="progress-title">100 Days Progress</div>
+          <div class="day-count"><span id="currentDay">Day 1</span> <span class="label">/ 100</span></div>
+        </div>
+        <div class="percent" id="progressPercent">1%</div>
+      </div>
+      <div class="bar" aria-hidden="true"><span id="progressBar"></span></div>
+      <p class="motivation" id="motivation">Show up today. The shape follows the schedule.</p>
+    </section>
+
+    <nav class="nav" aria-label="App sections">
+      <a href="#progress">Progress</a>
+      <a href="#weekday">Mon-Fri</a>
+      <a href="#sat">Saturday</a>
+      <a href="#sun">Sunday</a>
+      <a href="#gym">Gym Plan</a>
+      <a href="#rules">Rules</a>
+    </nav>
+
+    <section id="weekday" aria-labelledby="weekday-title">
+      <h2 class="section-title" id="weekday-title">Mon-Fri</h2>
+      <div class="route-card">
+        <p class="route-note">Weekday rhythm for work, food, training, recovery, and sleep. 平日節奏：上班、吃飯、訓練、恢復、睡眠。</p>
+        <div class="timeline">
+          <div class="timeline-item"><div class="timeline-time">07:30-08:00</div><div class="timeline-main"><strong>Wake up / shower / to work</strong><span>起床 / 洗澡 / 去上班</span></div></div>
+          <div class="timeline-item"><div class="timeline-time">08:00-17:00</div><div class="timeline-main"><strong>Work</strong><span>上班</span></div></div>
+          <div class="timeline-item"><div class="timeline-time">17:00-18:15</div><div class="timeline-main"><strong>Back home / shower / standby</strong><span>回家 / 洗澡 / 準備</span></div></div>
+          <div class="timeline-item"><div class="timeline-time">18:15-19:15</div><div class="timeline-main"><strong>Dinner + rest + digest</strong><span>晚餐 + 休息 + 消化</span></div></div>
+          <div class="timeline-item">
+            <div class="timeline-time">19:15-20:30</div>
+            <div class="timeline-main">
+              <strong>Training</strong>
+              <span>訓練時間</span>
+              <div class="training-days" aria-label="Weekday training type">
+                <span class="tag db">Mon Gym</span>
+                <span class="tag db">Tue Gym</span>
+                <span class="tag swim">Wed Swim</span>
+                <span class="tag db">Thu Gym</span>
+                <span class="tag db">Fri Gym</span>
+              </div>
+            </div>
+          </div>
+          <div class="timeline-item"><div class="timeline-time">20:30-21:00</div><div class="timeline-main"><strong>Cool down / shower</strong><span>放鬆 / 洗澡</span></div></div>
+          <div class="timeline-item"><div class="timeline-time">21:00-21:30</div><div class="timeline-main"><strong>Reading</strong><span>閱讀</span></div></div>
+          <div class="timeline-item"><div class="timeline-time">21:30-00:00</div><div class="timeline-main"><strong>Netflix / drama</strong><span>Netflix / 追劇</span></div></div>
+          <div class="timeline-item"><div class="timeline-time">00:00-00:30</div><div class="timeline-main"><strong>Wind down</strong><span>放鬆準備睡覺</span></div></div>
+          <div class="timeline-item"><div class="timeline-time">00:30-07:30</div><div class="timeline-main"><strong>Sleep</strong><span>睡眠</span></div></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="sat" aria-labelledby="sat-title">
+      <h2 class="section-title" id="sat-title">Saturday</h2>
+      <div class="route-card" style="border-left-color: var(--yellow);">
+        <p class="route-note">Keep Saturday lighter after work. 星期六下班後放鬆一點，讓身體恢復。</p>
+        <div class="timeline">
+          <div class="timeline-item"><div class="timeline-time">07:30-08:00</div><div class="timeline-main"><strong>Wake up / shower / to work</strong><span>起床 / 洗澡 / 去上班</span></div></div>
+          <div class="timeline-item"><div class="timeline-time">08:00-17:00</div><div class="timeline-main"><strong>Work</strong><span>上班</span></div></div>
+          <div class="timeline-item"><div class="timeline-time">After Work</div><div class="timeline-main"><strong>Dinner / relax / free time</strong><span>晚餐 / 放鬆 / 自由時間</span></div></div>
+          <div class="timeline-item"><div class="timeline-time">Night</div><div class="timeline-main"><strong>Rest / Netflix / outing</strong><span>休息 / Netflix / 出門</span></div></div>
+          <div class="timeline-item"><div class="timeline-time">01:00-02:00</div><div class="timeline-main"><strong>Sleep later</strong><span>晚一點睡</span></div></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="sun" aria-labelledby="sun-title">
+      <h2 class="section-title" id="sun-title">Sunday</h2>
+      <div class="route-card" style="border-left-color: var(--red);">
+        <p class="route-note">Recovery and reset day before the weekday routine starts again. 恢復和整理日，準備回到平日節奏。</p>
+        <div class="timeline">
+          <div class="timeline-item"><div class="timeline-time">Morning</div><div class="timeline-main"><strong>Wake up naturally / slow morning</strong><span>自然醒 / 慢慢開始早上</span></div></div>
+          <div class="timeline-item"><div class="timeline-time">Day Time</div><div class="timeline-main"><strong>Grocery / meal prep / laundry / clean room</strong><span>買菜 / 備餐 / 洗衣 / 收拾房間</span></div></div>
+          <div class="timeline-item"><div class="timeline-time">Evening</div><div class="timeline-main"><strong>Stretching / mobility / light walk</strong><span>伸展 / 活動度 / 輕鬆走路</span></div></div>
+          <div class="timeline-item"><div class="timeline-time">Night</div><div class="timeline-main"><strong>Reading 30 min + Netflix</strong><span>閱讀 30 分鐘 + Netflix</span></div></div>
+          <div class="timeline-item"><div class="timeline-time">00:30</div><div class="timeline-main"><strong>Sleep back to weekday time</strong><span>睡回平日時間</span></div></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="workouts" aria-labelledby="workouts-title">
+      <h2 class="section-title" id="workouts-title">Workout Days</h2>
+
+      <details class="day" style="border-left-color: var(--green);">
+        <summary>
+          <div><h3>Monday - Chest + Shoulder</h3><p>45-60 min · chest line and shoulder width</p></div>
+          <span class="chev">⌄</span>
+        </summary>
+        <div class="day-body">
+          <div class="category">
+            <h4>Warm Up</h4>
+            <article class="exercise">
+              <div class="num">1</div>
+              <div class="exercise-main">
+                <div class="exercise-head"><h5>Arm Circles + Shoulder Rolls</h5><span class="tag warm">Warm</span></div>
+                <p class="meta">2 rounds · 45 sec each</p>
+                <p class="desc">Purpose: wake up shoulders and chest. 目的：啟動肩膀和胸口，減少拉傷。</p>
+                <a class="form-btn" href="https://fitnessprogramer.com/exercise/arm-circles/" target="_blank" rel="noopener noreferrer">Open GIF / Form ↗</a>
+              </div>
+            </article>
+          </div>
+          <div class="category">
+            <h4>Chest</h4>
+            <article class="exercise">
+              <div class="num">2</div>
+              <div class="exercise-main">
+                <div class="exercise-head"><h5>Dumbbell Bench Press</h5><span class="tag db">DB</span></div>
+                <p class="meta">4 sets · 8-12 reps</p>
+                <p class="desc">Purpose: build chest thickness. Setup: shoulder blades tight, dumbbells over mid-chest. 目的：增加胸部厚度。</p>
+                <a class="form-btn" href="https://fitnessprogramer.com/exercise/dumbbell-bench-press/" target="_blank" rel="noopener noreferrer">Open GIF / Form ↗</a>
+              </div>
+            </article>
+            <article class="exercise">
+              <div class="num">3</div>
+              <div class="exercise-main">
+                <div class="exercise-head"><h5>Dumbbell Chest Fly</h5><span class="tag db">DB</span></div>
+                <p class="meta">3 sets · 10-14 reps</p>
+                <p class="desc">Purpose: shape chest line. Setup: light weight, soft elbows, controlled stretch. 目的：修飾胸型，重量不要太重。</p>
+                <a class="form-btn" href="https://fitnessprogramer.com/exercise/dumbbell-fly/" target="_blank" rel="noopener noreferrer">Open GIF / Form ↗</a>
+              </div>
+            </article>
+          </div>
+          <div class="category">
+            <h4>Shoulder</h4>
+            <article class="exercise">
+              <div class="num">4</div>
+              <div class="exercise-main">
+                <div class="exercise-head"><h5>Dumbbell Shoulder Press</h5><span class="tag db">DB</span></div>
+                <p class="meta">3 sets · 8-12 reps</p>
+                <p class="desc">Purpose: add shoulder mass. Setup: ribs down, press slightly inward. 目的：增加肩膀份量。</p>
+                <a class="form-btn" href="https://fitnessprogramer.com/exercise/dumbbell-shoulder-press/" target="_blank" rel="noopener noreferrer">Open GIF / Form ↗</a>
+              </div>
+            </article>
+            <article class="exercise">
+              <div class="num">5</div>
+              <div class="exercise-main">
+                <div class="exercise-head"><h5>ES3000 Cable Lateral Raise</h5><span class="tag es">ES3000</span></div>
+                <p class="meta">3 sets · 12-15 reps each</p>
+                <p class="desc">Purpose: constant tension for wider shoulders after pressing. Setup: low pulley, light weight, lead with elbow. 目的：用持續阻力加寬肩線。</p>
+                <a class="form-btn" href="https://fitnessprogramer.com/exercise/cable-lateral-raise/" target="_blank" rel="noopener noreferrer">Open GIF / Form ↗</a>
+              </div>
+            </article>
+          </div>
+        </div>
+      </details>
+
+      <details class="day" style="border-left-color: var(--blue);">
+        <summary>
+          <div><h3>Tuesday - Back + Biceps</h3><p>45-60 min · lat width and arm pull strength</p></div>
+          <span class="chev">⌄</span>
+        </summary>
+        <div class="day-body">
+          <div class="category">
+            <h4>Warm Up</h4>
+            <article class="exercise">
+              <div class="num">1</div>
+              <div class="exercise-main">
+                <div class="exercise-head"><h5>Scapular Pull + Bandless Rows</h5><span class="tag warm">Warm</span></div>
+                <p class="meta">2 rounds · 12 reps</p>
+                <p class="desc">Purpose: feel shoulder blades before pulling. 目的：先找到背部發力。</p>
+                <a class="form-btn" href="https://fitnessprogramer.com/exercise/inverted-row/" target="_blank" rel="noopener noreferrer">Open GIF / Form ↗</a>
+              </div>
+            </article>
+          </div>
+          <div class="category">
+            <h4>Back / V-Shape</h4>
+            <article class="exercise">
+              <div class="num">2</div>
+              <div class="exercise-main">
+                <div class="exercise-head"><h5>ES3000 Lat Pulldown</h5><span class="tag es">ES3000</span></div>
+                <p class="meta">4 sets · 8-12 reps</p>
+                <p class="desc">Purpose: widen the upper back. Setup: pull elbows down toward ribs. 目的：加寬背部。</p>
+                <a class="form-btn" href="https://fitnessprogramer.com/exercise/lat-pulldown/" target="_blank" rel="noopener noreferrer">Open GIF / Form ↗</a>
+              </div>
+            </article>
+            <article class="exercise">
+              <div class="num">3</div>
+              <div class="exercise-main">
+                <div class="exercise-head"><h5>Chest Supported Dumbbell Row</h5><span class="tag db">DB</span></div>
+                <p class="meta">4 sets · 10-12 reps</p>
+                <p class="desc">Purpose: build mid-back without lower-back strain. Setup: chest on bench, pull toward lower ribs. 目的：訓練背中段，身體更穩。</p>
+                <a class="form-btn" href="https://fitnessprogramer.com/?s=chest+supported+dumbbell+row" target="_blank" rel="noopener noreferrer">Open GIF / Form ↗</a>
+              </div>
+            </article>
+            <article class="exercise">
+              <div class="num">4</div>
+              <div class="exercise-main">
+                <div class="exercise-head"><h5>Dumbbell Pullover</h5><span class="tag db">DB</span></div>
+                <p class="meta">3 sets · 10-14 reps</p>
+                <p class="desc">Purpose: stretch lats and open upper body. Setup: slow arc, ribs controlled. 目的：刺激背闊肌和胸廓控制。</p>
+                <a class="form-btn" href="https://fitnessprogramer.com/exercise/dumbbell-pullover/" target="_blank" rel="noopener noreferrer">Open GIF / Form ↗</a>
+              </div>
+            </article>
+          </div>
+          <div class="category">
+            <h4>Arms - Biceps</h4>
+            <article class="exercise">
+              <div class="num">5</div>
+              <div class="exercise-main">
+                <div class="exercise-head"><h5>ES3000 Cable Biceps Curl</h5><span class="tag es">ES3000</span></div>
+                <p class="meta">3 sets · 12-15 reps</p>
+                <p class="desc">Purpose: constant biceps tension after back work. Setup: elbows fixed, slow lower. 目的：背部訓練後用滑輪穩定刺激二頭肌。</p>
+                <a class="form-btn" href="https://fitnessprogramer.com/?s=cable+biceps+curl" target="_blank" rel="noopener noreferrer">Open GIF / Form ↗</a>
+              </div>
+            </article>
+          </div>
+        </div>
+      </details>
+
+      <details class="day" style="border-left-color: var(--cyan);">
+        <summary>
+          <div><h3>Wednesday - Swimming</h3><p>30-45 min · conditioning and fat loss</p></div>
+          <span class="chev">⌄</span>
+        </summary>
+        <div class="day-body">
+          <div class="category">
+            <h4>Swimming</h4>
+            <article class="exercise">
+              <div class="num">1</div>
+              <div class="exercise-main">
+                <div class="exercise-head"><h5>Easy Warm Laps</h5><span class="tag swim">Swim</span></div>
+                <p class="meta">8-10 min</p>
+                <p class="desc">Purpose: raise heart rate without rushing. 目的：慢慢進入狀態。</p>
+                <a class="form-btn" href="https://fitnessprogramer.com/?s=swimming" target="_blank" rel="noopener noreferrer">Open GIF / Form ↗</a>
+              </div>
+            </article>
+            <article class="exercise">
+              <div class="num">2</div>
+              <div class="exercise-main">
+                <div class="exercise-head"><h5>Moderate Continuous Swim</h5><span class="tag swim">Swim</span></div>
+                <p class="meta">20-25 min</p>
+                <p class="desc">Purpose: burn fat and improve breathing rhythm. 目的：燃脂與提升心肺。</p>
+                <a class="form-btn" href="https://fitnessprogramer.com/?s=swimming+cardio" target="_blank" rel="noopener noreferrer">Open GIF / Form ↗</a>
+              </div>
+            </article>
+            <article class="exercise">
+              <div class="num">3</div>
+              <div class="exercise-main">
+                <div class="exercise-head"><h5>Cool Down Laps</h5><span class="tag swim">Swim</span></div>
+                <p class="meta">5-8 min</p>
+                <p class="desc">Purpose: finish relaxed, not exhausted. 目的：放鬆收尾。</p>
+                <a class="form-btn" href="https://fitnessprogramer.com/?s=swimming+cool+down" target="_blank" rel="noopener noreferrer">Open GIF / Form ↗</a>
+              </div>
+            </article>
+          </div>
+        </div>
+      </details>
+
+      <details class="day" style="border-left-color: var(--purple);">
+        <summary>
+          <div><h3>Thursday - Shoulder + Abs</h3><p>40-55 min · shoulder caps and core base</p></div>
+          <span class="chev">⌄</span>
+        </summary>
+        <div class="day-body">
+          <div class="category">
+            <h4>Shoulder</h4>
+            <article class="exercise">
+              <div class="num">1</div>
+              <div class="exercise-main">
+                <div class="exercise-head"><h5>Dumbbell Lateral Raise</h5><span class="tag db">DB</span></div>
+                <p class="meta">4 sets · 12-18 reps</p>
+                <p class="desc">Purpose: prioritize shoulder width while fresh. 目的：先做側平舉，集中加寬肩線。</p>
+                <a class="form-btn" href="https://fitnessprogramer.com/exercise/dumbbell-lateral-raise/" target="_blank" rel="noopener noreferrer">Open GIF / Form ↗</a>
+              </div>
+            </article>
+            <article class="exercise">
+              <div class="num">2</div>
+              <div class="exercise-main">
+                <div class="exercise-head"><h5>Dumbbell Rear Delt Fly</h5><span class="tag db">DB</span></div>
+                <p class="meta">3 sets · 12-15 reps</p>
+                <p class="desc">Purpose: round rear shoulders and improve posture. 目的：補後束，讓肩膀更立體。</p>
+                <a class="form-btn" href="https://fitnessprogramer.com/exercise/dumbbell-reverse-fly/" target="_blank" rel="noopener noreferrer">Open GIF / Form ↗</a>
+              </div>
+            </article>
+            <article class="exercise">
+              <div class="num">3</div>
+              <div class="exercise-main">
+                <div class="exercise-head"><h5>ES3000 Face Pull</h5><span class="tag es">ES3000</span></div>
+                <p class="meta">3 sets · 12-15 reps</p>
+                <p class="desc">Purpose: shoulder health and upper-back detail. 目的：保護肩膀，改善圓肩。</p>
+                <a class="form-btn" href="https://fitnessprogramer.com/exercise/face-pull/" target="_blank" rel="noopener noreferrer">Open GIF / Form ↗</a>
+              </div>
+            </article>
+          </div>
+          <div class="category">
+            <h4>Abs</h4>
+            <article class="exercise">
+              <div class="num">4</div>
+              <div class="exercise-main">
+                <div class="exercise-head"><h5>Plank</h5><span class="tag core">Core</span></div>
+                <p class="meta">3 sets · 30-60 sec</p>
+                <p class="desc">Purpose: build bracing foundation. 目的：建立核心穩定。</p>
+                <a class="form-btn" href="https://fitnessprogramer.com/exercise/plank/" target="_blank" rel="noopener noreferrer">Open GIF / Form ↗</a>
+              </div>
+            </article>
+          </div>
+          <div class="category">
+            <h4>Lower Abs</h4>
+            <article class="exercise">
+              <div class="num">5</div>
+              <div class="exercise-main">
+                <div class="exercise-head"><h5>Dumbbell Reverse Crunch</h5><span class="tag db">DB</span></div>
+                <p class="meta">3 sets · 10-15 reps</p>
+                <p class="desc">Purpose: lower-ab control. Setup: hold a light dumbbell only if form stays clean. 目的：訓練下腹控制。</p>
+                <a class="form-btn" href="https://fitnessprogramer.com/?s=dumbbell+reverse+crunch" target="_blank" rel="noopener noreferrer">Open GIF / Form ↗</a>
+              </div>
+            </article>
+          </div>
+          <div class="category">
+            <h4>Oblique</h4>
+            <article class="exercise">
+              <div class="num">6</div>
+              <div class="exercise-main">
+                <div class="exercise-head"><h5>Russian Twist</h5><span class="tag core">Core</span></div>
+                <p class="meta">3 sets · 16-24 reps</p>
+                <p class="desc">Purpose: train rotation without rushing. 目的：控制側腹，不要甩動。</p>
+                <a class="form-btn" href="https://fitnessprogramer.com/exercise/russian-twist/" target="_blank" rel="noopener noreferrer">Open GIF / Form ↗</a>
+              </div>
+            </article>
+          </div>
+        </div>
+      </details>
+
+      <details class="day" style="border-left-color: var(--cyan);">
+        <summary>
+          <div><h3>Friday - Upper Body V-Shape</h3><p>45-60 min · back width, shoulders, chest finish</p></div>
+          <span class="chev">⌄</span>
+        </summary>
+        <div class="day-body">
+          <div class="category">
+            <h4>Back / V-Shape</h4>
+            <article class="exercise">
+              <div class="num">1</div>
+              <div class="exercise-main">
+                <div class="exercise-head"><h5>ES3000 Lat Pulldown</h5><span class="tag es">ES3000</span></div>
+                <p class="meta">4 sets · 8-12 reps</p>
+                <p class="desc">Purpose: second weekly hit for lat width. 目的：再次刺激背闊肌寬度。</p>
+                <a class="form-btn" href="https://fitnessprogramer.com/exercise/lat-pulldown/" target="_blank" rel="noopener noreferrer">Open GIF / Form ↗</a>
+              </div>
+            </article>
+            <article class="exercise">
+              <div class="num">2</div>
+              <div class="exercise-main">
+                <div class="exercise-head"><h5>One Arm Dumbbell Row</h5><span class="tag db">DB</span></div>
+                <p class="meta">3 sets · 10-12 reps each</p>
+                <p class="desc">Purpose: lat and back thickness. Setup: pull elbow toward hip. 目的：增加背部厚度和線條。</p>
+                <a class="form-btn" href="https://fitnessprogramer.com/exercise/one-arm-dumbbell-row/" target="_blank" rel="noopener noreferrer">Open GIF / Form ↗</a>
+              </div>
+            </article>
+          </div>
+          <div class="category">
+            <h4>Shoulder</h4>
+            <article class="exercise">
+              <div class="num">3</div>
+              <div class="exercise-main">
+                <div class="exercise-head"><h5>Dumbbell Arnold Press</h5><span class="tag db">DB</span></div>
+                <p class="meta">3 sets · 8-10 reps</p>
+                <p class="desc">Purpose: full shoulder pump. Setup: smooth rotation, no lower-back arch. 目的：整體肩膀刺激。</p>
+                <a class="form-btn" href="https://fitnessprogramer.com/exercise/arnold-press/" target="_blank" rel="noopener noreferrer">Open GIF / Form ↗</a>
+              </div>
+            </article>
+            <article class="exercise">
+              <div class="num">4</div>
+              <div class="exercise-main">
+                <div class="exercise-head"><h5>ES3000 Cable Lateral Raise</h5><span class="tag es">ES3000</span></div>
+                <p class="meta">3 sets · 12-15 reps each</p>
+                <p class="desc">Purpose: finish side delts with constant cable tension. 目的：用滑輪持續張力收尾肩寬。</p>
+                <a class="form-btn" href="https://fitnessprogramer.com/exercise/cable-lateral-raise/" target="_blank" rel="noopener noreferrer">Open GIF / Form ↗</a>
+              </div>
+            </article>
+          </div>
+          <div class="category">
+            <h4>Chest</h4>
+            <article class="exercise">
+              <div class="num">5</div>
+              <div class="exercise-main">
+                <div class="exercise-head"><h5>Incline Dumbbell Press</h5><span class="tag db">DB</span></div>
+                <p class="meta">3 sets · 8-12 reps</p>
+                <p class="desc">Purpose: upper-chest shape for better shirt fit. 目的：強化上胸，穿衣更挺。</p>
+                <a class="form-btn" href="https://fitnessprogramer.com/exercise/incline-dumbbell-press/" target="_blank" rel="noopener noreferrer">Open GIF / Form ↗</a>
+              </div>
+            </article>
+          </div>
+          <div class="category">
+            <h4>Arms - Triceps</h4>
+            <article class="exercise">
+              <div class="num">6</div>
+              <div class="exercise-main">
+                <div class="exercise-head"><h5>ES3000 Triceps Pushdown</h5><span class="tag es">ES3000</span></div>
+                <p class="meta">3 sets · 12-15 reps</p>
+                <p class="desc">Purpose: arm shape and pressing support with stable resistance. 目的：用滑輪穩定訓練手臂後側線條。</p>
+                <a class="form-btn" href="https://fitnessprogramer.com/?s=triceps+pushdown" target="_blank" rel="noopener noreferrer">Open GIF / Form ↗</a>
+              </div>
+            </article>
+          </div>
+        </div>
+      </details>
+
+      <details class="day" style="border-left-color: var(--yellow);">
+        <summary>
+          <div><h3>Saturday - Rest</h3><p>20-40 min · easy movement and reset</p></div>
+          <span class="chev">⌄</span>
+        </summary>
+        <div class="day-body">
+          <div class="category">
+            <h4>Recovery</h4>
+            <article class="exercise">
+              <div class="num">1</div>
+              <div class="exercise-main">
+                <div class="exercise-head"><h5>Easy Walk</h5><span class="tag core">Core</span></div>
+                <p class="meta">20-40 min</p>
+                <p class="desc">Purpose: keep fat loss moving without fatigue. 目的：低壓燃脂和放鬆。</p>
+                <a class="form-btn" href="https://fitnessprogramer.com/?s=walking" target="_blank" rel="noopener noreferrer">Open GIF / Form ↗</a>
+              </div>
+            </article>
+            <article class="exercise">
+              <div class="num">2</div>
+              <div class="exercise-main">
+                <div class="exercise-head"><h5>Chest + Lat Stretch</h5><span class="tag warm">Warm</span></div>
+                <p class="meta">6-8 min</p>
+                <p class="desc">Purpose: release tight upper body. 目的：放鬆胸背，改善體態。</p>
+                <a class="form-btn" href="https://fitnessprogramer.com/?s=chest+lat+stretch" target="_blank" rel="noopener noreferrer">Open GIF / Form ↗</a>
+              </div>
+            </article>
+          </div>
+        </div>
+      </details>
+
+      <details class="day" style="border-left-color: var(--red);">
+        <summary>
+          <div><h3>Sunday - Recovery</h3><p>15-30 min · prepare for Monday</p></div>
+          <span class="chev">⌄</span>
+        </summary>
+        <div class="day-body">
+          <div class="category">
+            <h4>Recovery</h4>
+            <article class="exercise">
+              <div class="num">1</div>
+              <div class="exercise-main">
+                <div class="exercise-head"><h5>Bird Dog</h5><span class="tag core">Core</span></div>
+                <p class="meta">3 sets · 8-10 reps each side</p>
+                <p class="desc">Purpose: recovery-day core, back control, and posture reset. 目的：恢復日輕量核心、背部控制和姿勢重置。</p>
+                <a class="form-btn" href="https://fitnessprogramer.com/?s=bird+dog" target="_blank" rel="noopener noreferrer">Open GIF / Form ↗</a>
+              </div>
+            </article>
+            <article class="exercise">
+              <div class="num">2</div>
+              <div class="exercise-main">
+                <div class="exercise-head"><h5>Dead Bug</h5><span class="tag core">Core</span></div>
+                <p class="meta">3 sets · 8-10 reps each side</p>
+                <p class="desc">Purpose: gentle core stability and lower-back control for recovery day. 目的：恢復日溫和核心穩定和下背控制。</p>
+                <a class="form-btn" href="https://fitnessprogramer.com/exercise/dead-bug/" target="_blank" rel="noopener noreferrer">Open GIF / Form ↗</a>
+              </div>
+            </article>
+          </div>
+        </div>
+      </details>
+    </section>
+
+    <section id="gym" aria-labelledby="gym-title">
+      <h2 class="section-title" id="gym-title">Gym Plan</h2>
+      <div class="section-card">
+        <p>Run this as a 100-day shape plan from 22 June 2026. The goal is not random hard training; it is repeated weekly structure that makes your shoulders wider, back cleaner, chest fuller, waist tighter, and clothes fit better.</p>
+        <div class="plan-points">
+          <p><strong>Weekly Focus</strong><span>Mon chest + shoulder, Tue back + biceps, Wed swimming, Thu shoulder + abs, Fri upper-body V-shape.</span></p>
+          <p><strong>Equipment Strategy</strong><span>Use dumbbells for stable strength and shape work. Use ES3000 for smooth cable tension on lats, rear delts, side delts, curls, and triceps.</span></p>
+          <p><strong>Progress Target</strong><span>Keep form clean first. When the top rep range feels controlled, add a little weight or one extra rep next time.</span></p>
+        </div>
+        <div class="quick-tags" aria-label="Equipment tags">
+          <span class="tag db">DB</span>
+          <span class="tag es">ES3000</span>
+          <span class="tag core">Core</span>
+          <span class="tag swim">Swim</span>
+          <span class="tag warm">Warm</span>
+        </div>
+      </div>
+    </section>
+
+    <section id="rules" aria-labelledby="rules-title">
+      <h2 class="section-title" id="rules-title">Rules</h2>
+      <div class="rule-list">
+        <div class="rule-card"><strong>Clean Reps Only</strong><p>No swinging, no rushing, no ego weight. If form breaks, the set is done.</p></div>
+        <div class="rule-card"><strong>Control The Negative</strong><p>Lower the weight slowly for 2-3 seconds. That is where shape and muscle control are built.</p></div>
+        <div class="rule-card"><strong>Rest With Purpose</strong><p>Rest 60-90 sec for raises, curls, abs, and pushdowns. Rest 90-150 sec for presses, rows, and pulldowns.</p></div>
+        <div class="rule-card"><strong>Recover To Grow</strong><p>Sleep, protein, walking, and swimming matter. The body changes between workouts, not only during workouts.</p></div>
+      </div>
+    </section>
+
+    <footer>
+      Static HTML/PWA · FitnessProgramer buttons open in a new tab
+      <span class="app-version">Version v1.0.4 · Updated 23 Jun 2026</span>
+    </footer>
+  </main>
+
+  <script>
+    const PLAN_START = "2026-06-22";
+    const TOTAL_DAYS = 100;
+    const messages = [
+      "Show up today. The shape follows the schedule.",
+      "Shoulder width is built one clean rep at a time.",
+      "Pull with the back, not the ego.",
+      "Today is about form, rhythm, and finishing.",
+      "Better clothes fit starts with consistent weeks.",
+      "Small progress still counts. Stack it.",
+      "Recover with intent so the next session hits harder."
+    ];
+
+    function updateProgress() {
+      const start = new Date(`${PLAN_START}T00:00:00`);
+      const today = new Date();
+      const localToday = new Date(today.getFullYear(), today.getMonth(), today.getDate());
+      const elapsed = Math.floor((localToday - start) / 86400000) + 1;
+      const day = Math.min(Math.max(elapsed, 1), TOTAL_DAYS);
+      const percent = Math.round((day / TOTAL_DAYS) * 100);
+
+      document.getElementById("currentDay").textContent = `Day ${day}`;
+      document.getElementById("progressPercent").textContent = `${percent}%`;
+      document.getElementById("progressBar").style.width = `${percent}%`;
+      document.getElementById("motivation").textContent = messages[(day - 1) % messages.length];
+    }
+
+    function addGifDropdowns() {
+      const gifMap = {
+        "Arm Circles + Shoulder Rolls": "https://fitnessprogramer.com/wp-content/uploads/2021/07/Arm-Circles_Shoulders.gif",
+        "Dumbbell Bench Press": "https://fitnessprogramer.com/wp-content/uploads/2021/02/Dumbbell-Press.gif",
+        "Dumbbell Chest Fly": "https://fitnessprogramer.com/wp-content/uploads/2021/02/Dumbbell-Fly.gif",
+        "Dumbbell Shoulder Press": "https://fitnessprogramer.com/wp-content/uploads/2021/02/Dumbbell-Shoulder-Press.gif",
+        "ES3000 Cable Lateral Raise": "https://fitnessprogramer.com/wp-content/uploads/2021/02/Cable-Lateral-Raise.gif",
+        "ES3000 Lat Pulldown": "https://fitnessprogramer.com/wp-content/uploads/2021/02/Lat-Pulldown.gif",
+        "Scapular Pull + Bandless Rows": "https://fitnessprogramer.com/wp-content/uploads/2021/06/Inverted-Row.gif",
+        "Chest Supported Dumbbell Row": "https://fitnessprogramer.com/wp-content/uploads/2021/02/45-Degree-Incline-Row.gif",
+        "Dumbbell Pullover": "https://fitnessprogramer.com/wp-content/uploads/2021/02/Dumbbell-Pullover.gif",
+        "ES3000 Cable Biceps Curl": "https://fitnessprogramer.com/wp-content/uploads/2021/02/cable-curl.gif",
+        "Dumbbell Lateral Raise": "https://fitnessprogramer.com/wp-content/uploads/2021/02/Dumbbell-Lateral-Raise.gif",
+        "Dumbbell Rear Delt Fly": "https://fitnessprogramer.com/wp-content/uploads/2021/02/Dumbbell-Reverse-Fly.gif",
+        "ES3000 Face Pull": "https://fitnessprogramer.com/wp-content/uploads/2021/02/Face-Pull.gif",
+        "Plank": "https://fitnessprogramer.com/wp-content/uploads/2021/02/plank.gif",
+        "Dumbbell Reverse Crunch": "https://fitnessprogramer.com/wp-content/uploads/2022/07/Dumbbell-Reverse-Grip-30-Degrees-Incline-Bench-Press.gif",
+        "Russian Twist": "https://fitnessprogramer.com/wp-content/uploads/2021/02/Russian-Twist.gif",
+        "One Arm Dumbbell Row": "https://fitnessprogramer.com/wp-content/uploads/2021/02/Dumbbell-Row.gif",
+        "Dumbbell Arnold Press": "https://fitnessprogramer.com/wp-content/uploads/2021/02/Arnold-Press.gif",
+        "Incline Dumbbell Press": "https://fitnessprogramer.com/wp-content/uploads/2021/02/Incline-Dumbbell-Press.gif",
+        "ES3000 Triceps Pushdown": "https://fitnessprogramer.com/wp-content/uploads/2022/11/One-arm-triceps-pushdown.gif",
+        "Easy Walk": "https://fitnessprogramer.com/wp-content/uploads/2021/09/Walking.gif",
+        "Chest + Lat Stretch": "https://fitnessprogramer.com/wp-content/uploads/2026/01/wall-lat-stretch.gif",
+        "Bird Dog": "https://fitnessprogramer.com/wp-content/uploads/2022/07/Bird-Dog.gif",
+        "Dead Bug": "https://fitnessprogramer.com/wp-content/uploads/2021/05/Dead-Bug.gif"
+      };
+
+      document.querySelectorAll(".exercise-main").forEach((exercise) => {
+        const title = exercise.querySelector("h5")?.textContent?.trim();
+        const gifUrl = gifMap[title];
+        if (!gifUrl || exercise.querySelector(".gif-drop")) return;
+
+        const drop = document.createElement("details");
+        drop.className = "gif-drop";
+        drop.innerHTML = `
+          <summary>Show GIF / 動作示範</summary>
+          <div class="gif-box">
+            <img src="${gifUrl}" alt="${title} form GIF" loading="lazy">
+            <p class="gif-fallback">GIF cannot load here. Use the Open GIF / Form button above. GIF 載入不到時，請用上面的表單連結。</p>
+          </div>
+        `;
+
+        const image = drop.querySelector("img");
+        const fallback = drop.querySelector(".gif-fallback");
+        image.addEventListener("error", () => {
+          image.style.display = "none";
+          fallback.style.display = "block";
+        });
+
+        exercise.appendChild(drop);
+      });
+    }
+
+    updateProgress();
+    addGifDropdowns();
+
+    if ("serviceWorker" in navigator) {
+      window.addEventListener("load", () => {
+        navigator.serviceWorker.register("./sw.js").catch(() => {});
+      });
+    }
+  </script>
+</body>
+</html>
