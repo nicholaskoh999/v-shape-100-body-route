@@ -1,100 +1,298 @@
-# Task 8 Meal Tile Wording Suggestion
+= V-Shape 100 Body Route Version Log
 
-## Current Issue
+== v2.8.1 - 01 Jul 2026
 
-The Fuel dashboard meal tile currently shows the full meal text, for example:
+* Added custom grocery items with localStorage saving.
+* New "Custom Item / 自定义食物" form on grocery.html, placed after the search/buttons toolbar: English Name, Chinese Name, Category select (7 options), Short Note, and an Add Item / 添加 button.
+* Custom items are saved to a new localStorage key, vshapeCustomGroceryItems, as {id, category, en, zh, note} objects with id format custom-${Date.now()}.
+* Custom items render into their selected category as normal item cards with a checkbox, and restore automatically on reload.
+* Only custom items show a delete button; built-in items were not modified and never show a delete button.
+* Deleting a custom item removes it from the page, from vshapeCustomGroceryItems, and from vshapeGroceryChecked if it was checked; the category item count updates accordingly.
+* Search now also matches a note field (in addition to English/Chinese name) so custom items can be found by their short note; built-in item search behavior is unchanged since they carry no note data attribute.
+* Split Clear Checked and Reset List button behavior: Clear Checked / 清除已勾选 only unchecks all items and keeps all custom items; Reset List / 重置清单 unchecks all items, deletes all custom items, clears vshapeCustomGroceryItems, and removes their IDs from vshapeGroceryChecked, restoring the page to the default built-in list only.
+* User-entered text is HTML-escaped before rendering to prevent markup injection from custom item input.
+* Did not change index.html, nutrition.html, the workout plan, GIF/training logic, the bottom nav, or the calorie calculator.
+* Updated the service worker cache to vshape-100-v2.8.1.
 
-> Air-fryer chicken breast + broccoli + 70 g raw rice, then prep extra chicken for office lunches.
+== v2.8 - 01 Jul 2026
 
-This is accurate, but it is too long for a small dashboard tile. It wraps into multiple lines and makes the dashboard feel crowded.
+* Added Grocery / 买菜清单 page with searchable checklist and localStorage saving.
+* New self-contained page grocery.html, matching the existing app header, dark/light theme toggle, card layout, and bottom nav style.
+* Grocery categories: Protein / 蛋白质, Carbs / 碳水, Vegetables / 蔬菜, Fruits / 水果, Drinks / 饮料, Sauce / Seasoning / 调味, and Avoid / 少买 (43 items total).
+* Each item shows English name, Chinese name, a short Chinese note, and a checkbox.
+* Added a search input (Search grocery / 搜索食物) that filters items by English or Chinese name and hides empty categories.
+* Checkbox state is saved to localStorage under vshapeGroceryChecked and restored on reload.
+* Added Clear Checked / 清除已勾选 and Reset List / 重置清单 buttons to clear checked state.
+* Added a new Grocery item to the bottom navigation in index.html and nutrition.html (Home, Routine, Training, Fuel, Grocery); Grocery is marked active on grocery.html.
+* Did not change the workout plan, GIF logic, Friday rotation, calorie calculator, or meal plan content.
+* Added ./grocery.html to the service worker cache list and updated the cache to vshape-100-v2.8.
 
-## Recommended Direction
+== v2.7.1 - 30 Jun 2026
 
-Use a short meal title in the dashboard tile, and keep the full meal details inside the Weekly Meal Plan section.
+* Replaced gifMap with the confirmed FitnessProgramer GIF URL list: updated Lying Chest Press Machine, Lever Shoulder Press, Cable Triceps Pushdown, Cable Crunch / Normal Crunch, Straight Arm Cable Pulldown, and Overhead Dumbbell Triceps Extension to their newly confirmed direct GIF links.
+* Kept the combined Thursday card title "Cable Biceps Curl / Dumbbell Hammer Curl" as a single exercise card, mapped to the Dumbbell Hammer Curl GIF for the inline dropdown, since the card shows one combined exercise with two Form Guide button options.
+* Verified every gifMap key matches an exact h5 title in the document, including both states of the Friday weekly-rotation exercise (Overhead Dumbbell Triceps Extension / Dumbbell Curl).
+* Left all Form Guide button links unchanged since none were flagged as incorrect.
+* Confirmed PLAN_START remains 2026-06-29 and the training plan structure (exercise order, sets, reps, equipment, Chinese descriptions) is unchanged.
+* Updated the service worker cache to vshape-100-v2.7.1.
 
-Dashboard tile should answer quickly:
+== v2.7 - 30 Jun 2026
 
-- What meal window is it now?
-- What should I generally eat now?
-- Where can I see the full detail if needed?
+* Updated Monday and Thursday chest/shoulder exercises to match real equipment: "Machine Chest Press" renamed to "Lying Chest Press Machine", "Dumbbell Shoulder Press" renamed to "Lever Shoulder Press" (Monday slot 4), keeping the equipment list to Dumbbells, Lying Chest Press Machine, Lever Shoulder Press, Lat Pulldown Machine, Low Cable Row / Seated Cable Row, and Cable Pulley.
+* Renamed Low Cable Row entries to "Low Cable Row / Seated Cable Row" and Face Pull entries to "Cable Face Pull" for equipment clarity.
+* Added a dual-option Thursday arm exercise, "Cable Biceps Curl / Dumbbell Hammer Curl", with two separate Form Guide links so either equipment choice works.
+* Converted all Chinese exercise detail text (主要训练部位 / 训练目的 / 动作提示) and the four Training Logic sections from Traditional to Simplified Chinese.
+* Converted the remaining Traditional Chinese text in the Mon-Fri / Saturday / Sunday daily routine timelines and the GIF fallback message to Simplified Chinese for full-app consistency.
+* Updated the gifMap keys to match all renamed exercise titles exactly, so inline GIF dropdowns continue to match correctly.
+* Confirmed PLAN_START is set to 2026-06-29 with no remaining hardcoded 2026-06-22 in active code.
+* Updated the About This Plan equipment description to reflect the real equipment list instead of the old ES3000 branding.
+* Updated the service worker cache to vshape-100-v2.7.
 
-## Best Option
+== v2.6.1 - 30 Jun 2026
 
-Use short labels like this:
+* Fixed inline GIF dropdowns so the GIF image now loads inside the app, not only via the external View GIF / Form Guide button.
+* Changed the GIF-dropdown script to attach to the full .exercise card instead of only .exercise-main, fixing a mismatch that prevented dropdowns from appearing correctly on some cards.
+* Added referrerpolicy="no-referrer" to the inline GIF img tag so FitnessProgramer's hotlink protection does not block the image when loaded from inside the app.
+* Added an explicit load handler so the GIF fallback message only appears if the image truly fails to load, never before.
+* Updated PLAN_START to 29 June 2026 to match the actual start date; updated the matching About This Plan description text.
+* Confirmed the Lat Pulldown GIF link as the reference working URL: https://fitnessprogramer.com/wp-content/uploads/2021/02/Lat-Pulldown.gif.
+* Updated the service worker cache to vshape-100-v2.6.1.
 
-| Meal window | Dashboard title | Sub label | Full detail stays in Weekly Plan |
-|---|---|---|---|
-| Breakfast | Breakfast Plan | Breakfast · 06:00-10:30 | Actual breakfast text by weekday |
-| Lunch | Lunch Plan | Lunch · 10:30-15:00 | Actual lunch text by weekday |
-| Dinner | Dinner Plan | Dinner · 15:00-19:00 | Actual dinner text by weekday |
-| Snack | Snack Option | Snack · 19:00 onwards | Actual snack text by weekday |
+== v2.6 - 30 Jun 2026
 
-For the selected example, instead of showing:
+* Replaced the Training plan with a new 5-Day Upper Body V-Shape Plan: Mon Push A (Chest/Shoulder/Triceps), Tue Pull A (Back Width/Thickness/Biceps), Wed Shoulder + Abs, Thu Upper Mix, Fri V-Shape Pump.
+* Removed swimming and leg training from the weekly plan; Wednesday is now a full gym day instead of a swim day.
+* Each training day now has 6 exercises targeting roughly a 60-minute session, using Dumbbells, Chest Press Machine, Lat Pulldown Machine, and Seated/Low Cable Row.
+* Added bilingual exercise detail: target muscle, purpose, and form tip are now in Chinese for every exercise, with exercise names kept in English to match FitnessProgramer search terms.
+* Updated all GIF / Form Guide links to verified FitnessProgramer exercise pages for the new exercise list.
+* Added 4 new educational sections under Training Logic: why exercises repeat, why set counts vary (3/4/5 sets), the 1-hour training rule with rest-time guide, and weight selection + progressive overload rule with a worked example.
+* Added a live weekly rotation for Friday's last exercise (Overhead Dumbbell Triceps Extension on odd plan-weeks, Dumbbell Curl on even plan-weeks), calculated automatically from the 22 June 2026 plan start date.
+* Updated the weekly chip row, Today Workout card, and Mon-Fri daily-schedule training tags to match the new plan; removed remaining Wed Swim references from active content.
+* Kept Saturday Rest and Sunday Recovery days, Fuel/nutrition content, Body Tracker logic, and overall app layout unchanged.
+* Updated the service worker cache to vshape-100-v2.6.
 
-> Air-fryer chicken breast + broccoli + 70 g raw rice, then prep extra chicken for office lunches.
+== v2.5.3 - 28 Jun 2026
 
-use:
+* Changed the Fuel dashboard meal tile to show short meal window labels instead of full meal-detail text.
+* Uses Breakfast Plan, Lunch Plan, Dinner Plan, and Snack Option with the approved time windows.
+* Kept full meal details inside Weekly Meal Plan and left food choices, quantities, schedule, Body Tracker logic, workout content, and GIF links unchanged.
+* Updated the service worker cache to vshape-100-v2.5.3.
 
-> Dinner Plan
-> Dinner · 15:00-19:00
+== v2.5.2 - 28 Jun 2026
 
-## Alternative Options
+* Updated the Fuel dashboard meal tile to show the current weekday meal suggestion for the active time window.
+* Uses Breakfast 06:00-10:30, Lunch 10:30-15:00, Dinner 15:00-19:00, and Snack 19:00 onwards.
+* Kept weekly meal plan content, food choices, quantities, Body Tracker logic, and app flow unchanged.
+* Updated the service worker cache to vshape-100-v2.5.2.
 
-### Option A - Short Meal Type
+== v2.5.1 - 28 Jun 2026
 
-- Breakfast Plan
-- Lunch Plan
-- Dinner Plan
-- Snack Option
+* Updated the Fuel dashboard meal tile to show the current meal window: Breakfast 06:00-10:30, Lunch 10:30-15:00, Dinner 15:00-19:00, or Snack 19:00 onwards.
+* Kept meal plan content, food choices, quantities, Body Tracker logic, and layout unchanged.
+* Updated the service worker cache to vshape-100-v2.5.1.
 
-Pros: cleanest and fits the dashboard best.  
-Cons: user needs to scroll to Weekly Plan for exact food.
+== v2.5 - 28 Jun 2026
 
-### Option B - Short Food Summary
+* Polished app-wide wording for clearer section titles, button labels, footer notes, and Fuel terminology.
+* Renamed visible wording such as Gym Plan to Training, Today's Session to Today Workout, GIF / Form Guide to View GIF / Form Guide, and Nutrition Rules to Fuel Rules where appropriate.
+* Kept workout content, GIF URLs, meal plan content, quantities, Body Tracker logic, layout, CSS behavior, and JavaScript behavior unchanged.
+* Updated the service worker cache to vshape-100-v2.5.
 
-Examples:
+== v2.4.2 - 28 Jun 2026
 
-- Chicken Rice Prep
-- Economy Rice Cut
-- Tuna Sandwich
-- Yogurt + Fruit
-- Chicken Wrap
+* Standardized Fuel dashboard and Body Tracker stat tile styling so mixed neon highlight states no longer look inconsistent.
+* Kept all Fuel content, Body Tracker values, and calculation logic unchanged.
+* Updated the service worker cache to vshape-100-v2.4.2.
 
-Pros: more specific than Option A.  
-Cons: needs a custom short title for every day and meal.
+== v2.4.1 - 28 Jun 2026
 
-### Option C - Keep Full Food Text
+* Fixed the Training Today's Session card so it shows the current weekday session from TRAINING_BY_DAY instead of the static Monday default.
+* Updated the service worker cache to vshape-100-v2.4.1.
 
-Keep the current full meal sentence in the dashboard.
+== v2.4 - 28 Jun 2026
 
-Pros: shows exact food immediately.  
-Cons: too long for the tile and visually crowded.
+* Cleaned Fuel page wording for easier scanning and consistency.
+* Standardized terms such as low-fat, zero-sugar, 70 g, Greek yogurt, soy milk, whole wheat, and air-fryer wording where appropriate.
+* Kept all food choices, quantities, weekly schedule, office lunch logic, Body Tracker logic, and Fuel UI unchanged.
+* Updated the service worker cache to vshape-100-v2.4.
 
-## Recommended Implementation
+== v2.3.1 - 28 Jun 2026
 
-Use Option A now:
+* Wrapped Fuel body tracker localStorage read/write in try/catch so the tracker still works when browser storage is blocked.
+* Corrected the Dumbbell Reverse Crunch inline GIF mapping from the reverse-grip incline bench press GIF to FitnessProgramer's Reverse Crunch GIF.
+* Updated the service worker cache to vshape-100-v2.3.1.
 
-- Dashboard title: `Breakfast Plan`, `Lunch Plan`, `Dinner Plan`, or `Snack Option`
-- Dashboard sub label: meal window time
-- Weekly Meal Plan remains the source for full details
+== v2.3 - 28 Jun 2026
 
-## Suggested Future Enhancement
+* Rebuilt Fuel page (nutrition.html) UI layout — Task 4 UI/UX reorganization.
+* Added Fuel Dashboard: weekday label, Day X/100 pill, protein target tile (120-150g), hydration tile (2.5-3L), today's breakfast tile (weekday-aware), and quick-jump buttons (Tracker / Meals / Weekly / Grocery).
+* Body Tracker restyled as three large stat tiles (Weight / BMI / Body Fat) with slider below. All JS logic and localStorage IDs unchanged.
+* Daily Meals restyled as icon-header meal cards with icons per meal time (🍳🥗🍚🌙). All bilingual content unchanged.
+* Weekly Meal Plan: each day (Mon-Sun) wrapped in a collapsible with a 3-word meal preview. Today's day auto-opens on load. All meal-line content unchanged.
+* AEON Grocery Picks split into two collapsibles (Fresh Foods, Chilled + Grocery). Economy Rice Cut Guide and Seasoning Limit each in their own collapsible.
+* Training Day Nutrition and Nutrition Rules each moved into a collapsible. All content unchanged.
+* Legacy hero header and old scroll nav kept in DOM but hidden. Bottom nav Fuel tab active unchanged.
+* Service worker cache updated to vshape-100-v2.3.
+* Daily Routine and Training content in index.html untouched.
 
-If more specificity is wanted later, use Option B and add a separate short-title map, while keeping full meal text unchanged in Weekly Meal Plan.
+== v2.2 - 28 Jun 2026
 
-## Do Not Change
+* Added Today's Workout highlight card at top of Training section — shows session name and duration, computed from current weekday.
+* Added weekly day-chip row (Mon–Sun) — today's chip highlighted in accent; clicking a chip opens that day's collapsible.
+* Today's workout day collapsible auto-opens on load; all other days start closed.
+* Upgraded exercise cards: category dividers as labelled rules, sets/reps as pill badge, full-width solid GIF / Form Guide CTA button per exercise.
+* Gym Plan section collapsed into "About This Plan" collapsible (starts closed, preserves all content).
+* Rules section collapsed into "Training Rules" collapsible (starts closed, preserves all 4 rules).
+* Workout day collapsibles given unique IDs (workout-mon through workout-sun) for JS targeting.
+* All GIF URLs, exercise names, sets/reps, training day structure, and workout program logic unchanged.
+* Daily Routine and Fuel / nutrition.html content untouched.
+* Service worker cache updated to vshape-100-v2.2.
 
-- Do not change meal choices
-- Do not change quantities
-- Do not change Monday-Sunday schedule
-- Do not change Body Tracker logic
-- Do not change weekly meal details
+== v2.1 - 28 Jun 2026
 
-## My Recommendation
+* Added Home Dashboard as the primary entry screen.
+* Dashboard shows: V-Shape 100 title, current weekday, Day X / 100 badge, progress bar with percentage, rotating motivation line.
+* Today snapshot row shows today's routine type and today's training session name, computed from the current weekday.
+* Quick action buttons (Routine, Training, Fuel) on the dashboard for one-tap navigation.
+* Improved Daily Routine sections: Mon-Fri, Saturday, Sunday are now collapsible cards with glance strips.
+* Glance strips show key time chips (Wake, Work, Train, Sleep) visible without opening the collapsible.
+* Today's routine collapsible auto-opens on load; the other two stay closed.
+* Day-type badges added to routine section headers: Workday (green), Weekend (yellow), Recovery (red).
+* Bottom nav Home href updated from #progress to #home.
+* Scroll-detection sections array updated to use home instead of progress.
+* Training workout content, GIF links, Fuel/nutrition.html unchanged.
+* Service worker cache updated to vshape-100-v2.1.
 
-Change the dashboard tile to short meal window labels. For the current selected tile, use:
+== v2.0 - 28 Jun 2026
 
-> Dinner Plan
-> Dinner · 15:00-19:00
+* Redesigned UI to premium dark fitness app look. Dark mode is now the default.
+* Replaced corporate blue palette with neon yellow-green accent (#C8F135) and near-black backgrounds (#0a0a0a).
+* Replaced old horizontal scroll navigation with a fixed bottom navigation bar (Home, Routine, Training, Fuel).
+* Old horizontal scroll nav hidden via CSS only; HTML kept intact for rollback safety.
+* Compact dark app bar replaces old accent-coloured sticky header on both pages.
+* Progress card, all cards, and buttons restyled with larger border-radius (16px) and new accent colours.
+* Exercise number badges now solid neon yellow-green instead of light blue.
+* Light mode kept as secondary toggle; both pages default to dark mode.
+* nutrition.html receives identical visual style with Fuel tab marked active in bottom nav.
+* Updated service worker cache to vshape-100-v2.0.
+* Updated manifest.webmanifest theme_color and background_color to #0a0a0a.
+* Nutrition content, GIF links, exercise data, meal plans, and localStorage logic unchanged.
 
-This keeps the dashboard clean while preserving the full meal detail below.
+== v1.9 - 24 Jun 2026
+
+* Added a separate desktop interface with wider containers, multi-column schedules, workout cards, and nutrition sections.
+* Kept the original compact phone interface for small screens.
+* Removed the portrait-only PWA orientation so desktop and wider screens can use the responsive layout naturally.
+
+== v1.8 - 24 Jun 2026
+
+* Split AEON grocery and economy rice guide text into separate English and Chinese lines.
+
+== v1.7 - 24 Jun 2026
+
+* Updated Monday to Friday lunches to match the real routine: one pulled chicken can day, one tuna can day, two economy rice days, and one family lunch outside.
+* Added an economy rice cutting guide for choosing lean protein, half rice, and vegetables.
+* Changed Nutrition pill styling to darker high-contrast backgrounds with white text.
+
+== v1.6 - 24 Jun 2026
+
+* Split Daily Meals guidance into separate English and Chinese lines.
+* Removed sweet potato from the AEON grocery picks and weekly meal plan.
+* Updated the fixed 100-day meal base note to allow Korean, Japanese, or Thai flavor rotation.
+
+== v1.5 - 23 Jun 2026
+
+* Reworded the Korean flavor note in the fixed 100-day meal base.
+* Changed Nutrition tag text to white for better readability.
+
+== v1.4 - 23 Jun 2026
+
+* Split every weekly meal plan item into separate English and Chinese lines.
+* Improved mobile readability for bilingual meal cards.
+
+== v1.3 - 23 Jun 2026
+
+* Changed the weekly meal plan into a fixed 100-day repeatable meal base.
+* Removed the "This Week" wording from the Nutrition page.
+* Added AEON grocery picks based on myAEON2go shopping categories.
+* Added fallback guidance when canned lunch protein is not available.
+
+== v1.2 - 23 Jun 2026
+
+* Added a weekly fat-loss meal planner to the standalone Nutrition page.
+* Added Monday to Sunday breakfast, lunch, dinner, and optional snack cards.
+* Kept Monday to Friday lunches office-friendly with no cooking needed at lunch.
+* Limited tuna to one day and pulled chicken to two days for the week.
+
+== v1.1 - 23 Jun 2026
+
+* Switched the version style to v1.0, v1.1, v1.2 for future updates.
+* Expanded the standalone Nutrition page with bilingual English and Chinese guidance.
+* Added breakfast, lunch, dinner, night, and training-day nutrition notes.
+* Added a 168 cm body tracker with adjustable weight, BMI, and rough body fat estimate.
+
+== v1.0.11 - 23 Jun 2026
+
+* Moved the Nutrition entry out of the main sticky route navigation.
+* Added a separate Nutrition Plan shortcut near the top hero area.
+* Kept the route navigation focused on Progress, Mon-Fri, Saturday, Sunday, Gym Plan, and Rules.
+
+== v1.0.10 - 23 Jun 2026
+
+* Prepared the standalone nutrition page release files.
+* Updated the main app footer and service worker version.
+
+== v1.0.9 - 23 Jun 2026
+
+* Moved Nutrition out of the main page into a standalone nutrition.html page.
+* Updated the main navigation Nutrition link to open nutrition.html in a new tab.
+* Added nutrition.html to the service worker cache.
+
+== v1.0.8 - 23 Jun 2026
+
+* Replaced Tuesday Scapular Pull + Bandless Rows with no-equipment Prone Y-T-W Raise.
+* Removed the old Inverted Row GIF mapping from the Tuesday warm up.
+
+== v1.0.7 - 23 Jun 2026
+
+* Added duration labels to Saturday and Sunday route timeline items.
+
+== v1.0.6 - 23 Jun 2026
+
+* Added Nutrition navigation tab.
+* Added Nutrition section with protein, carb, hydration, and better clothes fit guidance.
+* Recommended GitHub repository name: v-shape-100-body-route.
+
+== v1.0.5 - 23 Jun 2026
+
+* Renamed the app experience to "V-Shape 100 Body Route".
+* Added duration labels to the Mon-Fri daily route timeline.
+* Removed Open GIF / Form buttons from Wednesday swimming cards.
+* Added this VERSION_LOG.rdoc file.
+
+== v1.0.4 - 23 Jun 2026
+
+* Updated Bird Dog GIF to the 2022 FitnessProgramer source.
+
+== v1.0.3 - 23 Jun 2026
+
+* Replaced Plank Breathing with Dead Bug for Sunday recovery.
+* Updated Sunday recovery GIF mapping.
+
+== v1.0.2 - 23 Jun 2026
+
+* Removed swimming GIF dropdowns.
+* Updated Saturday Easy Walk and Chest + Lat Stretch GIF links.
+* Changed Sunday recovery to Bird Dog and Dead Bug direction.
+
+== v1.0.1 - 23 Jun 2026
+
+* Moved version label to the footer.
+* Changed Mon Gym, Tue Gym, Wed Swim, Thu Gym, and Fri Gym chips to white.
+* Added recovery GIF dropdowns for Saturday and Sunday.
+
+== v1.0 - 23 Jun 2026
+
+* First GitHub-ready release.
+* Added 100-day progress from 22 Jun 2026.
+* Added daily route sections, gym plan, rules, PWA manifest, icons, and GIF dropdown support.
